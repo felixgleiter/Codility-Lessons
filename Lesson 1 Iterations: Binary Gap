@@ -9,7 +9,7 @@ function convertDecimalToBinary(N) {
       N = (N - 1)/2;
     }
   }
-  return binDigitArray;
+  console.log(binDigitArray);
 }
 
 function findLongestBinaryGap(N) {
@@ -23,12 +23,17 @@ function findLongestBinaryGap(N) {
       } else {
         binaryGapArray.push(0);
       }
+    console.log(binaryGapArray);
     }
     for (var k = 0; k < binDigitArray.length + 1 - i; k++) {
-      if (binDigitArray.slice(k, k + binaryGapArray.length) === binaryGapArray) {
-        maxBinaryGap = binaryGapArray.length;
+      if (binDigitArray.slice(k, k + binaryGapArray.length) === binaryGapArray) { //This condition is never being satisfied. Why?
+        maxBinaryGap = binaryGapArray.length - 2;
+        break;
       }
     }
+    if (maxBinaryGap !== 0) {
+      break;
+    }
   }
-  return maxBinaryGap;
+  console.log(maxBinaryGap);
 }
