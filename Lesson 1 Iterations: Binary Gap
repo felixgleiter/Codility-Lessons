@@ -1,0 +1,34 @@
+function convertDecimalToBinary(N) {
+  binDigitArray = [];
+  while(N > 0) {
+    if (N % 2 == 0) {
+      binDigitArray.unshift(0);
+      N /= 2;
+    } else if (N % 2 == 1) {
+      binDigitArray.unshift(1);
+      N = (N - 1)/2;
+    }
+  }
+  return binDigitArray;
+}
+
+function findLongestBinaryGap(N) {
+  convertDecimalToBinary(N);
+  var maxBinaryGap = 0;
+  for (var i = binDigitArray.length; i > 2; i--) {
+    var binaryGapArray = [];
+    for (var j = 0; j < i; j++) {
+      if (j == 0 || j == i - 1) {
+        binaryGapArray.push(1);
+      } else {
+        binaryGapArray.push(0);
+      }
+    }
+    for (var k = 0; k < binDigitArray.length + 1 - i; k++) {
+      if (binDigitArray.slice(k, k + binaryGapArray.length) === binaryGapArray) {
+        maxBinaryGap = binaryGapArray.length;
+      }
+    }
+  }
+  return maxBinaryGap;
+}
