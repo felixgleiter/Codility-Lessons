@@ -1,0 +1,21 @@
+function findUniqueValueFromOddArrayOfPairs(A) {
+    for (var i = 0; i < A.length; i++) {
+        var isDuplicate = false;
+        for (var j = 1; j < A.length; j++) {
+            if (A[0] == A[j]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (isDuplicate == false) {
+            break;
+        }
+        var shiftedA = [];
+        shiftedA.push(A[A.length - 1]);
+        for (var k = 0; k < A.length - 1; k++) {
+            shiftedA.push(A[k]);
+        }
+        A = shiftedA;
+    }
+    return A[0];
+}
