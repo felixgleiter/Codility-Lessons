@@ -1,0 +1,14 @@
+function cyclicRotate(A, K) {
+    if (K % A.length == 0 || A.length == 0) {
+        return A;
+    } 
+    for (var i = 0; i < K; i++) {
+      var shiftedA = [];
+      shiftedA.push(A[A.length - 1]);
+      for (var j = 0; j < A.length - 1; j++) {
+          shiftedA.push(A[j]);
+      }
+      A = shiftedA;
+    }
+    return A;
+}
