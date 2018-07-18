@@ -1,0 +1,22 @@
+function minTapeDifference(A) {
+    function absVal(N) {
+        if (N >= 0) {
+            return N;
+        } else if (N < 0) {
+            return N * -1;
+        }
+    }
+    if (A.length == 2) {
+        return absVal(A[0] - A[1]);
+    }
+    function getSum(total, num) {
+      return total + num;
+    }
+    var tapeDifference = 2*A[0] - A.reduce(getSum, 0);
+    var absTapeDifference = absVal(2*A[0] - A.reduce(getSum, 0));
+    for (var P = 1; P < A.length - 1; P++) {
+        tapeDifference += 2*A[P];
+        absTapeDifference = Math.min(absTapeDifference, absVal(tapeDifference));
+    }
+    return absTapeDifference;
+}
