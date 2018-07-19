@@ -1,0 +1,8 @@
+function findSmallestMissingInteger(A) {
+    for (var i = 0; i < A.length; i++) {
+        if (A.includes(i + 1) == false) {
+            return i + 1;
+        }
+    }
+    return A.length + 1;
+}
