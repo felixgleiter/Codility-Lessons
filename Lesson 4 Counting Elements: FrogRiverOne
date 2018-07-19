@@ -1,0 +1,10 @@
+function minTimeFrogCrossing(X, A) {
+    var fallenLeaves = new Set();
+    for (var i = 0; i < A.length; i++) {
+        fallenLeaves.add(A[i]);
+        if (i >= X - 1 && fallenLeaves.size == X) {
+            return i;
+        }
+    }
+    return -1;
+}
