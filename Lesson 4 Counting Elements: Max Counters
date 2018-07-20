@@ -1,0 +1,14 @@
+function maxCounters(N, A) {
+    var counters = new Array(N);
+    counters.fill(0);
+    var fillVal = 0;
+    for (var i = 0; i < A.length; i++) {
+        if (A[i] < N + 1) {
+            var newCount = ++counters[A[i] - 1];
+            fillVal = Math.max(fillVal, newCount);
+        } else if (A[i] == N + 1) {
+            counters.fill(fillVal);
+        }
+    }
+    return counters;
+}
