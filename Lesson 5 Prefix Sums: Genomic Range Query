@@ -1,0 +1,16 @@
+function genomicRangeQuery(S, P, Q) {
+    var minImpFactorArray = [];
+    for (var K = 0; K < P.length; K++) {
+        var gene = S.slice(P[K],Q[K] + 1);
+        if (gene.includes('A')) {
+            minImpFactorArray.push(1);
+        } else if (gene.includes('C')) {
+            minImpFactorArray.push(2);
+        } else if (gene.includes('G')) {
+            minImpFactorArray.push(3);
+        } else if (gene.includes('T')) {
+            minImpFactorArray.push(4);
+        }
+    }
+    return minImpFactorArray;
+}
