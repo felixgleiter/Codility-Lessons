@@ -1,0 +1,23 @@
+function minAvgSliceStartPosition(A) {
+    var P = 0;
+    var minStartingPosition = 0;
+    var sliceSum = A[0];
+    var minAverage = (A[0] + A[1])/2;
+    for (var Q = P + 1; Q < A.length; Q++) {
+        sliceSum += A[Q];
+        var sliceAverage = (sliceSum/(Q - P + 1));
+        if (sliceAverage < minAverage) {
+            minAverage = sliceAverage;
+            minStartingPosition = P;
+        }
+        if (P == A.length - 2) {
+            break;
+        }
+        if (Q == A.length - 1) {
+            P++;
+            Q = P;
+            sliceSum = A[P];
+        }
+    }
+    return minStartingPosition;
+}
