@@ -1,0 +1,23 @@
+function maxTripletProduct(A) {
+    if (A.length == 3) {
+        return A[0]*A[1]*A[2];
+    }
+    function negative(num) {
+        return num < 0;
+    }
+    function positive(num) {
+        return num > 0;
+    }
+    var negativeA = A.filter(negative).sort(function(a,b){return a-b});
+    var positiveA = A.filter(positive).sort(function(a,b){return b-a});
+    if (negativeA[0]*negativeA[1] >= positiveA[1]*positiveA[2] || (positiveA.length < 3 && positiveA.length > 0 && negativeA.length >= 2)) {
+        return negativeA[0]*negativeA[1]*positiveA[0];
+    }
+    if (negativeA[0]*negativeA[1] < positiveA[0]*positiveA[1] || (negativeA.length < 2 && positiveA.length >= 3)) {
+        return positiveA[0]*positiveA[1]*positiveA[2];
+    }
+    if (positiveA.length == 0 && !A.includes(0)) {
+        return negativeA[negativeA.length - 1]*negativeA[negativeA.length - 2]*negativeA[negativeA.length - 3];
+    }
+    return 0;
+}
