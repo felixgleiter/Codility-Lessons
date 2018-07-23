@@ -1,0 +1,14 @@
+function numOfDistinctValues(A) { //Sort Method
+    var count = 0;
+    A.sort(function(a, b){return a-b});
+    while (A.length > 0) {
+        A = A.slice(A.lastIndexOf(A[0]) + 1, A.length);
+        count++;
+    }
+    return count;
+}
+
+function numOfDistinctValues(A) { //Set Method
+    var setA = new Set(A);
+    return setA.size;
+}
