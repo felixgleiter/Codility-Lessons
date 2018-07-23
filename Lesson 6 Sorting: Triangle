@@ -1,0 +1,28 @@
+function isTriangle(A) {
+    function positive(num) {
+        return num > 0;
+    }
+    var isTriangularTriplet = 0;
+    var A = A.filter(positive).sort(function(a,b){return a-b});
+    if (A.length < 3) {
+        return 0;
+    }
+    var P = 0;
+    var Q = 1;
+    var R = 2;
+    while (isTriangularTriplet == 0) {
+        if (A[P] + A[Q] > A[R]) {
+            isTriangularTriplet = 1;
+        } else if (P == A.length - 3) {
+            break;
+        } else if (Q == A.length - 2) {
+            P = P + 1;
+            Q = P + 1;
+            R = P + 2;
+        } else {
+            Q = Q + 1;
+            R = Q + 1;
+        }
+    }
+    return isTriangularTriplet;
+}
