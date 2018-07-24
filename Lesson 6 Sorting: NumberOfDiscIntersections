@@ -1,0 +1,27 @@
+function numOfDiscIntersections(A) {
+    if (A.length < 2) {
+        return 0;
+    }
+    function intersection(setA, setB) {
+        var isIntersection = 0;
+        for (var elem of setB) {
+            if (setA.has(elem)) {
+                isIntersection = 1;
+                break;
+            }
+        }
+        return isIntersection;
+    }
+    var intersectCount = 0;
+    for (var j = 0; j < A.length - 1; j++) {
+        var circleJ = new Set (Array.apply(null, Array(2*A[j] + 1)).map(function (_, i) {return i + j - A[j];}));
+        for (var k = j + 1; k < A.length; k++) {
+            var circleK = new Set (Array.apply(null, Array(2*A[k] + 1)).map(function (_, i) {return i + k - A[k];}));
+            intersectCount += intersection(circleJ, circleK);
+        }
+        if (intersectCount > 10000000) {
+            return -1;
+        }
+    }
+    return intersectCount;
+}
