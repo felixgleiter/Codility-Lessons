@@ -1,0 +1,25 @@
+function solution(S) {
+    if (S == '') {
+        return 1;
+    }
+    var isProperlyNested = 1;
+    var newLength = S.split("").length;
+    while (isProperlyNested == 1) {
+        arrS = S.split("()");
+        if (arrS[0] == '' && arrS[1] == '' && arrS.length == 2) {
+            break;
+        }
+        if (arrS.length < newLength) {
+            newLength = arrS.length;
+        } else if (arrS.length == newLength) {
+            isProperlyNested = 0;
+            break;
+        }
+        /*if (arrS.length % 2 == 1) {
+            isProperlyNested == 0;
+            break;
+        }*/
+        S = arrS.join("");
+    }
+    return isProperlyNested;
+}
