@@ -1,4 +1,4 @@
-function solution(S) {
+function isProperlyNestedParantheses(S) {
     if (S == '') {
         return 1;
     }
@@ -9,7 +9,9 @@ function solution(S) {
     var newLength = S.split("").length;
     while (isProperlyNested == 1) {
         arrS = S.split("()");
-        if (arrS[0] == '' && arrS[1] == '' && arrS.length == 2) {
+        S = arrS.join("");
+        arrS = S.split("");
+        if (arrS.length == 0) {
             break;
         }
         if (arrS.length < newLength) {
