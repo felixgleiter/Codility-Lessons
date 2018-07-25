@@ -2,6 +2,9 @@ function solution(S) {
     if (S == '') {
         return 1;
     }
+    if (S.split("").length % 2 == 1) {
+            return 0;
+    }
     var isProperlyNested = 1;
     var newLength = S.split("").length;
     while (isProperlyNested == 1) {
@@ -15,10 +18,6 @@ function solution(S) {
             isProperlyNested = 0;
             break;
         }
-        /*if (arrS.length % 2 == 1) {
-            isProperlyNested == 0;
-            break;
-        }*/
         S = arrS.join("");
     }
     return isProperlyNested;
