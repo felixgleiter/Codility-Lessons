@@ -1,0 +1,14 @@
+function solution(A, B) {
+    while (B.includes(0) && B.includes(1)) {
+        for (var i = 0; i < A.length - 1; i++) {
+            if (B[i] == 1 && B[i + 1] == 0) {
+                B.splice(Math.min(A[i], A[i + 1]), 1);
+                A.splice(Math.min(A[i], A[i + 1]), 1);
+            }
+        }
+        if (B.lastIndexOf(0) < B.indexOf(1)) {
+            break;
+        }
+    }
+    return A.length;
+}
