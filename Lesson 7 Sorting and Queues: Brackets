@@ -1,0 +1,30 @@
+function isProperlyNested(S) {
+    if (S == '') {
+        return 1;
+    }
+    if (S.split("").length % 2 == 1) {
+            return 0;
+    }
+    var _isProperlyNested = 1;
+    var newLength = S.split("").length;
+    while (_isProperlyNested == 1) {
+        arrS = S.split("()");
+        S = arrS.join("");
+        arrS = S.split("[]");
+        S = arrS.join("");
+        arrS = S.split("{}");
+        S = arrS.join("");
+        arrS = S.split("");
+        if (arrS.length == 0) {
+            break;
+        }
+        if (arrS.length < newLength) {
+            newLength = arrS.length;
+        } else if (arrS.length == newLength) {
+            _isProperlyNested = 0;
+            break;
+        }
+        S = arrS.join("");
+    }
+    return _isProperlyNested;
+}
