@@ -1,0 +1,18 @@
+function solution(H) {
+    function isLower(num) {
+        return num < H[i];
+    }
+    var blockCount = H.length;
+    var rightEnd = 0;
+    for (var i = 0; i < H.length - 1; i++) {
+        rightEnd = H.slice(i + 1).indexOf(H[i]) + (i + 1);
+        if (rightEnd == i) {
+            continue;
+        } else if (rightEnd == i + 1) {
+            blockCount -= 1;
+        } else if (H.slice(i + 1, rightEnd).filter(isLower).length == 0) {
+            blockCount -= 1;
+        }
+    }
+    return blockCount;
+}
