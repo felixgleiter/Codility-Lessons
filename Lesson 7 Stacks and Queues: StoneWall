@@ -1,4 +1,4 @@
-function solution(H) {
+function minBlocksRequired(H) {
     function isLower(num) {
         return num < H[i];
     }
