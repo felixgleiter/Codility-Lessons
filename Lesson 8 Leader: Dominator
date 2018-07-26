@@ -1,4 +1,4 @@
-function dominator(A) {
+function findIndexOfLeader(A) {
     function sameValue(num) {
         return num == A[i];
     }
