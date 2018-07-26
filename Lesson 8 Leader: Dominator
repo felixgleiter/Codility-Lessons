@@ -1,0 +1,11 @@
+function dominator(A) {
+    function sameValue(num) {
+        return num == A[i];
+    }
+    for (var i = 0; i < A.length; i++) {
+        if (A.filter(sameValue).length > A.length/2) {
+            return i;
+        }
+    }
+    return -1;
+}
