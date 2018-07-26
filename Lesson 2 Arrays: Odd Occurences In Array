@@ -1,10 +1,8 @@
 function findUniqueValueFromOddArrayOfPairs(A) { //Ver 1
     for (var j = 1; j < A.length; j++) {
         if (A[0] == A[j]) {
-            var duplicate = A.shift();
-            A[j - 1] = A[0];
-            A[0] = duplicate;
-            A.shift();
+            A.splice(j, 1);
+            A.splice(0, 1);
             j = 0;
         }
     }
