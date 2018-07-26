@@ -1,1 +1,22 @@
-
+function equiLeaders(A) {
+    function leader(Arr) {
+        function sameValue(num) {
+            return num == Arr[i];
+        }
+        for (var i = 0; i < Arr.length; i++) {
+            if (Arr.filter(sameValue).length > Arr.length/2) {
+                return Arr[i];
+            }
+        }
+        return false;
+    }
+    var equiLeaderCount = 0;
+    for (var S = 0; S < A.length - 1; S++) {
+        if (leader(A.slice(0, S + 1)) !== false && leader(A.slice(S + 1, A.length)) !== false) {
+            if (leader(A.slice(0, S + 1)) == leader(A.slice(S + 1, A.length))) {
+                equiLeaderCount += 1;
+            }
+        }
+    }
+    return equiLeaderCount;
+}
