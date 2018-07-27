@@ -1,0 +1,12 @@
+function solution(A) {
+    function getSum(total, num) {
+        return total + num;
+    }
+    var maxDoubleSliceSum = 0;
+    for (var i = 0; i < A.length - 3; i++) {
+        for (var j = A.length - 1; j > i + 2; j--) {
+            maxDoubleSliceSum = Math.max(maxDoubleSliceSum, A.slice(i + 1, j).reduce(getSum, 0) - A.slice(i + 1, j).sort(function(a,b) {return a-b})[0]);
+        }
+    }
+    return maxDoubleSliceSum;
+}
