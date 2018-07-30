@@ -1,0 +1,44 @@
+function solution(A) { //Too Time Complex!
+    function getSum(total, num) {
+        return total + num;
+    }
+    function negativeValue(num) {
+        return num < 0;
+    }
+    function positiveValue(num) {
+        return num > 0;
+    }
+    var sliceSum = A.reduce(getSum, 0);
+    var signBlockArr = [];
+    var rightLength = 0;
+    var positiveValueIndex = 0;
+    var negativeValueIndex = 0;
+    while (A.length > 0) {
+        if (A[0] > 0) {
+            negativeValueIndex = A.findIndex(negativeValue);
+            signBlockArr.push(A.slice(0, negativeValueIndex).reduce(getSum, 0));
+            A.splice(0, negativeValueIndex);
+        } else if (A[0] < 0) {
+            positiveValueIndex = A.findIndex(positiveValue);
+            signBlockArr.push(A.slice(0, positiveValueIndex).reduce(getSum, 0));
+            A.splice(0, positiveValueIndex);
+        } else if (A[0] == 0) {
+            A.shift();
+        }
+    }
+    console.log(signBlockArr);
+    return sliceSum;
+}
+
+function solution(A) { //Correct, but O(N**3)
+    function getSum(total, num) {
+        return total + num;
+    }
+    var sliceSum = A.reduce(getSum, 0);
+    for (var i = 0; i < A.length; i++) {
+        for (var j = i; j < A.length; j++) {
+            sliceSum = Math.max(sliceSum, A.slice(i, j + 1).reduce(getSum, 0));
+        }
+    }
+    return sliceSum;
+}
