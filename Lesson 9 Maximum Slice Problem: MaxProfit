@@ -1,0 +1,10 @@
+function maxProfit(A) {
+    var B = A.slice(0).sort(function(a,b) {return b-a});
+    var maxProfit = 0;
+    while (A.length > 1) {
+        maxProfit = Math.max(maxProfit, B[0] - A[0]);
+        B.splice(B.indexOf(A[0]), 1);
+        A.shift();
+    }
+    return maxProfit;
+}
