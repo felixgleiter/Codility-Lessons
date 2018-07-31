@@ -1,0 +1,32 @@
+function maxNumOfPeakBlocks(A) {
+    var peaks = [];
+    for (var i = 1; i < A.length - 1; i++) {
+        if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
+            peaks.push(i);
+            i++;
+        }
+    }
+    function peakInBlock(num) {
+        if (num >= j && num < j + (A.length/numOfBlocks)) {
+            return num;
+        }
+    }
+    var numOfBlocks = peaks.length;
+    for (numOfBlocks; numOfBlocks > 0; numOfBlocks--) {
+        if ((A.length/numOfBlocks) == Math.floor(A.length/numOfBlocks)) {
+            var isDivisible = true;
+            for (var j = 0; j <= A.length - (A.length/numOfBlocks); j += (A.length/numOfBlocks)) {
+                if (peaks.filter(peakInBlock).length > 0) {
+                    isDivisible = true;
+                } else if (peaks.filter(peakInBlock).length == 0) {
+                    isDivisible = false;
+                    break;
+                }
+            }
+            if (isDivisible == true) {
+                return numOfBlocks;
+            }
+        }
+    }
+    return 0;
+}
