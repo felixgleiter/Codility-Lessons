@@ -1,0 +1,8 @@
+function minPerimeter(N) {
+    for (var i = Math.floor(Math.sqrt(N)); i >= 1; i--) {
+        if ((N/i) == Math.floor(N/i)) {
+            break;
+        }
+    }
+    return 2*(i + (N/i));
+}
