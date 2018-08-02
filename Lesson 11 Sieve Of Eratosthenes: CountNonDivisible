@@ -1,0 +1,13 @@
+function countNonDivisors(A) {
+    var nonDivisorArr = [];
+    for (var i = 0; i < A.length; i++) {
+        var nonDivisorCount = 0;
+        for (var j = 0; j < A.length; j++) {
+            if (!(A[i] % A[j] == 0)) {
+                nonDivisorCount += 1;
+            }
+        }
+        nonDivisorArr.push(nonDivisorCount);
+    }
+    return nonDivisorArr;
+}
