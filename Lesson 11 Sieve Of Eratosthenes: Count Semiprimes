@@ -1,0 +1,27 @@
+function countSemiPrimes(N, P, Q) {
+    function countFactors(n) {
+        if (n == 1) {
+            return 1;
+        }
+        var factorCount = 2;
+        for (var i = 2; i <= Math.sqrt(n); i++) {
+            if ((n/i) == Math.sqrt(n)) {
+                factorCount += 1;
+            } else if ((n/i) == Math.floor(n/i)) {
+                factorCount += 2;
+            }
+        }
+        return factorCount;
+    }
+    var semiPrimeCountArr = [];
+    for (var i = 0; i < P.length; i++) {
+        var semiPrimeCount = 0;
+        for (var j = P[i]; j <= Q[i]; j++) {
+            if (countFactors(j) == 3 || (countFactors(j) == 4 && Math.cbrt(j) != Math.floor(Math.cbrt(j)))) {
+                semiPrimeCount += 1;
+            }
+        }
+        semiPrimeCountArr.push(semiPrimeCount);
+    }
+    return semiPrimeCountArr;
+}
