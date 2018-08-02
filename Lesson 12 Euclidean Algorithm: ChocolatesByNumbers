@@ -1,0 +1,11 @@
+function chocolatesEaten(N, M) {
+    var l = Math.max(N,M);
+    var r = Math.min(N,M);
+    var R = Math.max(N,M) % Math.min(N,M);
+    while (R > 0) {
+        l = r;
+        r = R;
+        R = l % r;
+    }
+    return N/r;
+}
