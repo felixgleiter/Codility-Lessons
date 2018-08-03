@@ -1,0 +1,43 @@
+function countIdenticalSetsOfPrimeDivisors(A, B) {
+    function arePrimeDivisorsIdentical(num1, num2) {
+        if (Math.min(num1, num2) == 1 && Math.max(num1, num2) > 1) {
+            return false;
+        }
+        var d = 2;
+        var dDivides1 = false;
+        var dDivides2 = false;
+        while (num1 > 1 || num2 > 1) {
+            if (num1 % d == 0) {
+                num1 /= d;
+                dDivides1 = true;
+            } 
+            if (num2 % d == 0) {
+                num2 /= d;
+                dDivides2 = true;
+            } 
+            if (num1 % d != 0 && num2 % d != 0) {
+                if (Math.min(num1, num2) == 1) {
+                    break;
+                }
+                if (dDivides1 != dDivides2) {
+                    return false;
+                } else {
+                    d += 1;
+                    dDivides1 = false;
+                    dDivides2 = false;
+                }
+            }
+        }
+        if (Math.max(num1, num2) > 1) {
+            return false;
+        }
+        return true;
+    }
+    var pDCongruencyCount = 0;
+    for (var i = 0; i < A.length; i++) {
+        if (arePrimeDivisorsIdentical(A[i], B[i]) == true) {
+            pDCongruencyCount += 1;
+        }
+    }
+    return pDCongruencyCount;
+}
