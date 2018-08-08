@@ -1,0 +1,39 @@
+function countFibFrogJumps(A) {
+    function fibonacci(N) {
+        return Math.round((((1 + Math.sqrt(5))/2)**N - (-(1 + Math.sqrt(5))/2)**(-N))/Math.sqrt(5));
+    }
+    var fibonacciInRiver = [];
+    var nextFibonacci = 1;
+    var n = 1;
+    while (nextFibonacci < A.length + 2) {
+        fibonacciInRiver.push(fibonacci(n));
+        n += 1;
+        nextFibonacci = fibonacci(n);
+    }
+    function containsOne(num) {
+        if (num == 1) {
+            return num;
+        }
+    }
+    var frogPosition = -1;
+    var leafPosition = -1;
+    var jumpCount = 0;
+    while (frogPosition < A.length) {
+        if (fibonacciInRiver.includes(A.length - frogPosition)) {
+            jumpCount += 1;
+            break;
+        }
+        if (!A.slice(leafPosition + 1).includes(1)) {
+            return -1;
+        }
+        while (A.slice(leafPosition + 1).includes(1)) {
+            leafPosition += A.slice(leafPosition + 1).findIndex(containsOne) + 1;
+            if (fibonacciInRiver.includes(leafPosition - frogPosition)) {
+                frogPosition += leafPosition - frogPosition;
+                jumpCount += 1;
+                break;
+            }
+        }
+    }
+    return jumpCount;
+}
