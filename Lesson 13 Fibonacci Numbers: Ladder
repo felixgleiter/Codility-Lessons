@@ -1,0 +1,35 @@
+function solution(A, B) { //Seemingly correct but slow
+    function ladderCombination(N) {
+        function factorial(N) {
+            var _factorial = 1;
+            for (var i = 1; i <= N; i++) {
+                _factorial *= i;
+            }
+            return _factorial;
+        }
+        function combination(N, R) {
+            return factorial(N)/(factorial(N-R)*factorial(R));
+        }
+        var ladderCombValue = 0;
+        for (var i = 0; i <= Math.floor(N/2); i++) {
+            ladderCombValue += combination(N - i, i);
+        }
+        return ladderCombValue;
+    }
+    var ladderPathArr = [];
+    for (var i = 0; i < A.length; i++) {
+        ladderPathArr.push(ladderCombination(A[i]) % 2**(B[i]));
+    }
+    return ladderPathArr;
+}
+
+function solution(A, B) { //Seemingly faster but incorrect; fibonacci(N) == 0 for N > 80
+    function fibonacci(N) {
+        return Math.round((((1 + Math.sqrt(5))/2)**(N + 1) - (-(1 + Math.sqrt(5))/2)**(-(N + 1)))/Math.sqrt(5));
+    }
+    var ladderPathArr = [];
+    for (var i = 0; i < A.length; i++) {
+        ladderPathArr.push(fibonacci(A[i]) % 2**(B[i]));
+    }
+    return ladderPathArr;
+}
