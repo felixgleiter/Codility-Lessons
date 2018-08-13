@@ -1,0 +1,22 @@
+function solution(K, M, A) {
+    function getSum(total, num) {
+        return total + num;
+    }
+    function aboveCeiling(num) {
+        if (A.slice(s, num).reduce(getSum, 0) >= Math.ceil(A.reduce(getSum, 0)/K)) {
+            return num;
+        }
+    }
+    var blockEnds = new Array(K).fill(0);
+    var sumsOfBlocks = new Array(K).fill(0);
+    var s = 0;
+    for (var i = 0; i < K - 1; i++) {
+        blockEnds[i] = A.slice(s, A.length).findIndex(aboveCeiling);
+        sumsOfBlocks[i] = A.slice(s, blockEnds[i] + 1).reduce(getSum, 0);
+        s = blockEnds[i] + 1;
+    }
+    blockEnds[K - 1] = A.length - 1;
+    sumsOfBlocks[K - 1] = A.slice(s, A.slice(s, A.length).findIndex(aboveCeiling) + 1).reduce(getSum, 0);
+    console.log(blockEnds);
+    console.log(sumsOfBlocks);
+}
