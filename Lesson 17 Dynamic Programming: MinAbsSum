@@ -1,0 +1,34 @@
+function minAbsSum(A) {
+    function getSum(total, num) {
+        return total + num;
+    }
+    function convertDecimalToBinary(N) {
+        binDigitArray = [];
+        while(N > 0) {
+            if (N % 2 == 0) {
+                binDigitArray.unshift(0);
+                N /= 2;
+            } else if (N % 2 == 1) {
+                binDigitArray.unshift(1);
+                N = (N - 1)/2;
+            }
+        }
+        return binDigitArray;
+    }
+    var val = Math.abs(A.reduce(getSum, 0));
+    for (var i = (2**(A.length) - 1); i > (2**(A.length - 1)) - 1; i--) {
+        var seq = convertDecimalToBinary(i);
+        var total = 0;
+        for (var j = 0; j < A.length; j++) {
+            if (seq[j] == 1) {
+                total += A[j];
+            } else if (seq[j] == 0) {
+                total -= A[j];
+            }
+        }
+        if (Math.abs(total) < val) {
+            val = Math.abs(total);
+        }
+    }
+    return val;
+}
