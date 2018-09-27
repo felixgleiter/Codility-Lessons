@@ -1,12 +1,12 @@
 function minAbsSum(A) {
-    function getSum(total, num) {
+     function getSum(total, num) {
         return total + num;
     }
-    function convertDecimalToBinary(N) {
+    function convertDecimalToSignBinary(N) {
         binDigitArray = [];
-        while(N > 0) {
+        while (N > 0) {
             if (N % 2 == 0) {
-                binDigitArray.unshift(0);
+                binDigitArray.unshift(-1);
                 N /= 2;
             } else if (N % 2 == 1) {
                 binDigitArray.unshift(1);
@@ -16,15 +16,11 @@ function minAbsSum(A) {
         return binDigitArray;
     }
     var val = Math.abs(A.reduce(getSum, 0));
-    for (var i = (2**(A.length) - 1); i > (2**(A.length - 1)) - 1; i--) {
-        var seq = convertDecimalToBinary(i);
+    for (var i = (2**(A.length) - 2); i > (2**(A.length - 1)) - 1; i--) {
+        var S = convertDecimalToSignBinary(i);
         var total = 0;
         for (var j = 0; j < A.length; j++) {
-            if (seq[j] == 1) {
-                total += A[j];
-            } else if (seq[j] == 0) {
-                total -= A[j];
-            }
+            total += A[j]*S[j];
         }
         if (Math.abs(total) < val) {
             val = Math.abs(total);
