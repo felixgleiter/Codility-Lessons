@@ -28,3 +28,23 @@ function minAbsSum(A) {
     }
     return val;
 }
+
+//Second Version, Much Improved:
+
+function minAbsSum(A) {
+    function getSum(total, num) {
+        return total + num;
+    }
+    A = A.map(Math.abs).sort(function(a,b){return b-a});
+    var val = A.reduce(getSum,0);
+    for (var j = 1; j < Math.ceil(A.length/2) + 1; j++) {
+        var total = A.slice(0,j).reduce(getSum,0);
+        for (var k = j; k < A.length; k++) {
+            total < 0 ? total += A[k] : total -= A[k];
+        }
+        if (Math.abs(total) < val) {
+            val = Math.abs(total);
+        }
+    }
+    return val;
+}
