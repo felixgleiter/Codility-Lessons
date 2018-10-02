@@ -1,0 +1,43 @@
+function numberOfFairDivisions(N, M, X, Y) {
+    if (X.length % 2 == 1) {
+        return 0;
+    }
+    var divisions = 0;
+    if (N > 1) {
+        var horBalance = false;
+        for (var i = 1; i < N; i++) {
+            var upperGoldMines = 0;
+            for (var x = 0; x < X.length; x++) {
+                if (X[x] < i) {
+                    upperGoldMines += 1;
+                }
+            }
+            if (horBalance == true && upperGoldMines != X.length/2) {
+               break;
+            }
+            if (upperGoldMines == X.length/2) {
+                horBalance = true;
+                divisions += 1;
+            }
+        }
+    }
+    if (M > 1) {
+        var verBalance = false;
+        for (var j = 1; j < M; j++) {
+            var leftGoldMines = 0;
+            for (var y = 0; y < Y.length; y++) {
+                if (Y[y] < j) {
+                    leftGoldMines += 1;
+                }
+            }
+            if (verBalance == true && leftGoldMines != Y.length/2) {
+               break;
+            }
+            if (leftGoldMines == Y.length/2) {
+                verBalance = true;
+                divisions += 1;
+            }
+        }
+    }
+    return divisions;
+}
