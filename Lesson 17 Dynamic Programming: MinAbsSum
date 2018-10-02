@@ -29,7 +29,7 @@ function minAbsSum(A) {
     return val;
 }
 
-//Second Version, Much Improved:
+//Second Version, Much Improved
 
 function minAbsSum(A) {
     function getSum(total, num) {
