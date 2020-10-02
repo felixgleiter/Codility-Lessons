@@ -48,3 +48,33 @@ function minAbsSum(A) {
     }
     return val;
 }
+
+//Third version; in Java! (81%)
+class Solution {
+    public int solution(int[] A) {
+       ArrayList<Integer> L = new ArrayList<Integer>();
+       for (int i = 0; i < A.length; i++) {
+           L.add((Integer) Math.abs(A[i]));
+       }
+       Collections.sort(L);
+       int total = L.stream().reduce(0, (a,b) -> a + b);
+       int val = total;
+       for (int i = 0; i < Math.ceil(total/2); i++) {
+           int rightTotal = 0;
+           for (int j = L.size() - 1; j >= 0; j--) {
+               if (rightTotal + L.get(j) <= Math.ceil(total/2) + i) {
+                   rightTotal += L.get(j);
+               }
+           }
+           if (rightTotal == Math.ceil(total/2) + i || rightTotal == Math.floor(total/2) - i) {
+               if (total % 2 == 0) {
+                   val = 2 * i;
+               } else {
+                   val = (2 * i) + 1;
+               }
+               break;
+           }
+       }
+       return val;
+    }
+}
